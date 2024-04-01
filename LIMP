@@ -1,0 +1,19 @@
+@echo off
+echo Limpando arquivos temporários...
+echo.
+del /q %temp%\*.*
+echo.
+echo Executando SFC (System File Checker)...
+sfc /scannow
+echo.
+echo Executando DISM (Deployment Image Servicing and Management)...
+DISM.exe /Online /Cleanup-image /Restorehealth
+echo.
+echo Verificando e reparando erros no disco...
+CHKDSK /f
+echo.
+echo Executando Limpeza de Disco...
+cleanmgr /sagerun:1
+echo.
+echo Todas as operações foram concluídas.
+pause
